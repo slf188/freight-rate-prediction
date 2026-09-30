@@ -1,5 +1,7 @@
 # Freight Rate Prediction: Report
 
+Stephano Vallejo
+
 ## The problem
 
 The goal is to predict `posted_rate` for truckload loads. The labeled data (`train_test.csv`) has 48,000 loads from January 1 to October 31, 2025. The loads I have to predict (`validation.csv`, 12,000 rows) are all from November and December 2025. So this is a forecasting problem more than a plain regression problem: the model only ever sees the past and is judged on the future. That shaped most of my decisions.
