@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+.DS_Store
+# personal notes and the assessor's instruction PDF stay local
+guide.txt
+freight-rate-ml-assessment.pdf
