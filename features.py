@@ -1,10 +1,15 @@
 """Turn cleaned rows into model features.
 
 Calendar features are limited to day of week: month/day-of-year would ask the
-model to extrapolate to Nov-Dec, which it never saw in training. Seasonality is
-instead carried by market_index and quote_signal, which exist for every date.
+model to extrapolate to Nov-Dec, which it never saw in training.
 City names are categoricals; coordinates are kept as a secondary signal so the
 model can place the 8 cities that only appear in validation.csv.
+
+market_index and quote_signal are deliberately excluded. Their relationship to
+the rate flips between months: in Jan-Mar, Jun and Sep quote_signal is almost
+exactly the rate-per-mile (a leak), in Apr, May, Jul and Oct it is unrelated,
+and Aug is a mix. Nov-Dec in validation.csv looks like Aug, where a model using
+them had ~2x the error of one without them (see evaluate.py backtest).
 """
 from __future__ import annotations
 
@@ -16,8 +21,6 @@ NUMERIC = [
     "distance",
     "log_distance",
     "weight",
-    "market_index",
-    "quote_signal",
     "day_of_week",
     "pickup_lat",
     "pickup_lon",
